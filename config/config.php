@@ -6,7 +6,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
 // Database configuration
 define('DB_HOST', 'localhost');
-define('DB_NAME', 'salon_booking');
+define('DB_NAME', 'salon_booking1');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 
@@ -20,7 +20,7 @@ define('HASH_ALGO', PASSWORD_DEFAULT);
 define('SESSION_TIMEOUT', 3600); // 1 hour
 
 // Upload paths
-define('UPLOAD_PATH', 'uploads/');
+define('UPLOAD_PATH', __DIR__ . '/../uploads/');
 define('MAX_FILE_SIZE', 5242880); // 5MB
 
 // Timezone

@@ -39,7 +39,7 @@ A comprehensive salon booking website built with PHP, HTML, and CSS. Features a 
 1. **Clone or Download** the project files to your web server directory
 
 2. **Database Setup**
-   - Create a new MySQL database named `salon_booking`
+   - Create a new MySQL database named `salon_booking1`
    - Run the SQL scripts in the `scripts/` folder:
      - First run `01_create_database.sql`
      - Then run `02_seed_data.sql`

@@ -1,5 +1,5 @@
 -- Create database for salon booking system
-CREATE DATABASE IF NOT EXISTS salon_booking;
+CREATE DATABASE IF NOT EXISTS salon_booking1;
 USE salon_booking;
 
 -- Create users table for customers

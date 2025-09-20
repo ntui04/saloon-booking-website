@@ -1,4 +1,5 @@
 <?php
+session_start();
 require_once '../includes/functions.php';
 
 $error = '';
@@ -7,19 +8,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = sanitize_input($_POST['username']);
     $password = $_POST['password'];
     
+    echo "Sanitized username: $username<br>"; // Debug
+    
     if (empty($username) || empty($password)) {
         $error = 'Please enter both username and password.';
     } else {
         $admin = fetch_one("SELECT * FROM admins WHERE username = ? AND is_active = 1", [$username]);
         
-        if ($admin && verify_password($password, $admin['password'])) {
-            $_SESSION['admin_id'] = $admin['id'];
-            $_SESSION['admin_name'] = $admin['full_name'];
-            $_SESSION['admin_role'] = $admin['role'];
-            $_SESSION['admin_login_time'] = time();
-            redirect('dashboard.php');
+        echo "Query result: ";
+        var_dump($admin); // Debug
+        
+        if ($admin) {
+            if (verify_password($password, $admin['password'])) {
+                $_SESSION['admin_id'] = $admin['id'];
+                $_SESSION['admin_name'] = $admin['full_name'];
+                $_SESSION['admin_role'] = $admin['role'];
+                $_SESSION['admin_login_time'] = time();
+                redirect('dashboard.php');
+            } else {
+                $error = 'Password is incorrect.';
+            }
         } else {
-            $error = 'Invalid username or password.';
+            $error = 'Username not found or account is inactive.';
         }
     }
 }
